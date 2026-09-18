@@ -1,0 +1,51 @@
+# 🐛 Buggie
+
+스마트폰 사용 시간을 과일의 상태 변화로 시각화하여  
+사용자가 스스로 스마트폰 사용 습관을 개선하도록 돕는 디지털 웰빙 앱입니다.
+
+## 📌 프로젝트 소개
+
+스마트폰 사용 시간이 늘어날수록 과일이 썩고 벌레가 생기며,
+사용 시간을 줄이거나 미션을 완료하면 과일이 다시 회복됩니다.
+
+사용 시간을 단순한 숫자가 아닌 시각적인 변화로 보여주어
+사용자가 자신의 스마트폰 사용 습관을 직관적으로 확인할 수 있도록 합니다.
+
+## ✨ 주요 기능
+
+- 스마트폰 사용 시간 조회
+- 사용 시간에 따른 과일 상태 변화
+- 특정 앱 사용 감지
+- 벌레 및 오염도 시각화
+- 일일 미션 제공
+- 미션 완료 시 포인트 지급
+- 포인트를 이용한 회복제 사용
+- 일일 상태 초기화
+- 홈 화면 위젯
+- 사용 패턴 기반 난이도 추천
+
+## 🛠 기술 스택
+
+- Flutter
+- Dart
+- Kotlin
+- Android Studio
+- Flutter MethodChannel
+- Android UsageStatsManager
+- SharedPreferences
+- Figma
+- LottieFiles
+
+## 📂 프로젝트 구조
+
+```text
+lib/
+├─ main.dart
+├─ screens/
+├─ widgets/
+├─ models/
+└─ services/
+
+android/app/src/main/kotlin/
+├─ MainActivity.kt
+└─ UsageStatsHelper.kt
