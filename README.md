@@ -36,16 +36,3 @@
 - Figma
 - LottieFiles
 
-## 📂 프로젝트 구조
-
-```text
-lib/
-├─ main.dart
-├─ screens/
-├─ widgets/
-├─ models/
-└─ services/
-
-android/app/src/main/kotlin/
-├─ MainActivity.kt
-└─ UsageStatsHelper.kt
