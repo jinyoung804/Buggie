@@ -25,7 +25,7 @@
 
 ## 기술 스택
 
-- Flutter
+- Flutter(main)
 - Dart
 - Kotlin
 - Android Studio
