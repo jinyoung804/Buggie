@@ -1,10 +1,25 @@
 import 'package:flutter/material.dart';
+
 import 'fruit_repository.dart'; // 데이터 저장 파일 불러오기
+import 'screens/login_screen.dart';
 
 void main() {
-  runApp(const MaterialApp(home: TempTestScreen()));
+  runApp(const BuggieApp());
 }
 
+class BuggieApp extends StatelessWidget {
+  const BuggieApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: LoginScreen(),
+    );
+  }
+}
+
+// 기능 테스트용 화면 (필요 시 임시 연결)
 class TempTestScreen extends StatefulWidget {
   const TempTestScreen({super.key});
 
