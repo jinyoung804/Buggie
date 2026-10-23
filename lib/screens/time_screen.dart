@@ -28,9 +28,24 @@ class _TimerScreenState extends State<TimerScreen> {
   // 1. 게이지 상태 수치 (0.0 ~ 1.0) -> 숫자만 변경하면 상단 연두색 바 비율이 바뀝니다.
   double gaugeProgress = 0.75; // 예: 75%
 
-  // 2. 고양이 시계 타이머 진행률 (0.0 ~ 1.0) -> 시간이 지날수록 주황색 영역이 늘어납니다.
-  double timerProgress = 0.25
-  ; // 예: 25% 진행 (90도 분량 차오름)
+  // ==================== [시간 연동 설정] ====================
+  // 전체 설정 시간 (예: 60분)
+  final int totalDurationMinutes = 60;
+  // 현재 남아있는 시간 (예: 11분 18초 -> 11분 + 18초 = 678초)
+  final int remainingMinutes = 50;
+  final int remainingSeconds = 18;
+
+  // 남아있는 시간에 따라 자동으로 계산되는 타이머 진행률 (0.0 ~ 1.0)
+  double get timerProgress {
+    int totalSeconds = totalDurationMinutes * 60;
+    int remainingTotalSeconds = (remainingMinutes * 60) + remainingSeconds;
+
+    // 경과된 시간 = 전체 시간 - 남은 시간
+    int elapsedTimeSeconds = totalSeconds - remainingTotalSeconds;
+
+    // 진행률 (0.0 ~ 1.0) 계산 및 범위 제한
+    return (elapsedTimeSeconds / totalSeconds).clamp(0.0, 1.0);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -85,7 +100,7 @@ class _TimerScreenState extends State<TimerScreen> {
                           ),
                         ),
                       ),
-                      const SizedBox(width: 30),
+                      const SizedBox(width: 16),
                       // 우측 일시정지 버튼 (클릭 가능 + 이미지 경로 적용)
                       GestureDetector(
                         onTap: () {
@@ -122,7 +137,7 @@ class _TimerScreenState extends State<TimerScreen> {
                               fit: BoxFit.contain,
                             ),
 
-                            // Layer 2: 주황색 부채꼴 게이지
+                            // Layer 2: 주황색 부채꼴 게이지 (자동 계산된 timerProgress 적용)
                             Positioned(
                               left: 58,
                               child: SizedBox(
@@ -191,9 +206,10 @@ class _TimerScreenState extends State<TimerScreen> {
                             ],
                           ),
                           const SizedBox(height: 2),
-                          const Text(
-                            '11:18',
-                            style: TextStyle(
+                          // 남은 시:분 표시 (원하시는 변수로 연결 가능)
+                          Text(
+                            '${remainingMinutes.toString().padLeft(2, '0')}:${remainingSeconds.toString().padLeft(2, '0')}',
+                            style: const TextStyle(
                               color: Color(0xFF2FA2FF),
                               fontSize: 48,
                               fontWeight: FontWeight.w900,
