@@ -1,3 +1,4 @@
+import '../services/overlay_service.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -168,6 +169,31 @@ class LoginScreen extends StatelessWidget {
                             // 회원가입 화면으로 이동
                           },
                         ),
+                      ),
+                    ],
+                  ),
+                ),
+                Positioned(
+                  top: 20,
+                  left: 10,
+                  child: Column(
+                    children: [
+                      ElevatedButton(
+                        onPressed: () async {
+                          final permitted =
+                          await OverlayService.requestPermission();
+
+                          if (permitted) {
+                            await OverlayService.show();
+                          }
+                        },
+                        child: const Text('애벌레 띄우기'),
+                      ),
+                      ElevatedButton(
+                        onPressed: () async {
+                          await OverlayService.hide();
+                        },
+                        child: const Text('애벌레 숨기기'),
                       ),
                     ],
                   ),

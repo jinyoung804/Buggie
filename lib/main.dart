@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'fruit_repository.dart'; // 데이터 저장 파일 불러오기
 import 'screens/login_screen.dart';
 
+
 void main() {
   runApp(const BuggieApp());
 }
