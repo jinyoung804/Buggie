@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'fruit_repository.dart'; // 데이터 저장 파일 불러오기
 import 'screens/login_screen.dart';
 import 'screens/time_screen.dart';
+import 'screens/select_fruit_screen.dart';
 
 void main() {
   runApp(const BuggieApp());
@@ -15,7 +16,7 @@ class BuggieApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: TimerScreen(),
+      home: SelectFruitScreen(),
     );
   }
 }
