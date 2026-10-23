@@ -103,7 +103,7 @@ class _SelectFruitScreenState extends State<SelectFruitScreen>
 
               // 2. 흰색 상자 하단 경계선에 딱 걸쳐있는 파란색 선(인디케이터)
               Positioned(
-                bottom: -4, // 👈 바 높이(6px)의 절반만큼 아래로 내리면 경계선 중앙에 반씩 걸쳐집니다!
+                bottom: -4,
                 left: 0,
                 right: 0,
                 child: AnimatedBuilder(
@@ -119,10 +119,10 @@ class _SelectFruitScreenState extends State<SelectFruitScreen>
                         width: tabWidth,
                         alignment: Alignment.center,
                         child: Container(
-                          width: 80, // 바의 가로 길이를 원하시는 대로 조정하세요
-                          height: 8,  // 바의 두께
+                          width: 80,
+                          height: 7,
                           decoration: BoxDecoration(
-                            color: const Color(0xFF66C2FF), // 진하늘색
+                            color: const Color(0xFF66C2FF),
                             borderRadius: BorderRadius.circular(3),
                           ),
                         ),
@@ -159,30 +159,50 @@ class _SelectFruitScreenState extends State<SelectFruitScreen>
                       selectedIndex = index;
                     });
                   },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(16),
-                      border: Border.all(
-                        color: isSelected
-                            ? const Color(0xFF29B6F6)
-                            : Colors.transparent,
-                        width: isSelected ? 5.5 : 0,
-                      ),
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Color(0xFFD7D7D7),
-                          offset: Offset(0, 10),
+                  child: Stack(
+                    clipBehavior: Clip.none,
+                    children: [
+                      // 1. [바탕 카드] 선택 여부와 관계없이 크기와 그림자가 고정됨
+                      Positioned.fill(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(16),
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Color(0xFFD7D7D7),
+                                offset: Offset(0, 10), // 하단 회색 그림자
+                              ),
+                            ],
+                          ),
+                          padding: const EdgeInsets.all(12),
+                          child: Center(
+                            child: Image.asset(
+                              fruitImages[index],
+                              fit: BoxFit.contain,
+                            ),
+                          ),
                         ),
-                      ],
-                    ),
-                    padding: const EdgeInsets.all(12),
-                    child: Center(
-                      child: Image.asset(
-                        fruitImages[index],
-                        fit: BoxFit.contain,
                       ),
-                    ),
+
+                      // 2. [선택 테두리] 선택되었을 때만 회색 그림자 영역(bottom: -10)까지 통째로 테두리를 씌움
+                      if (isSelected)
+                        Positioned(
+                          top: 0,
+                          left: 0,
+                          right: 0,
+                          bottom: -10, // 하단 회색 그림자의 위치까지 내려와서 가려짐 없이 전면에서 둘러쌈
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(19),
+                              border: Border.all(
+                                color: const Color(0xFF29B6F6),
+                                width: 5.5,
+                              ),
+                            ),
+                          ),
+                        ),
+                    ],
                   ),
                 );
               },
