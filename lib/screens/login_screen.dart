@@ -91,17 +91,7 @@ class LoginScreen extends StatelessWidget {
                     fit: BoxFit.fill,
                   ),
                 ),
-                // 애벌레
-                Positioned(
 
-                  left: 55,
-                  bottom: 170,
-                  width: 210,
-                  child: Image.asset(
-                    '$imagePath/bug.png',
-                    fit: BoxFit.contain,
-                  ),
-                ),
                 // 사과를 든 고양이
                 Positioned(
                   top: 278,
@@ -114,6 +104,17 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ),
 
+                // 애벌레
+                Positioned(
+
+                  left: 30,
+                  bottom: 150,
+                  width: 170,
+                  child: Image.asset(
+                    '$imagePath/bugg.png',
+                    fit: BoxFit.contain,
+                  ),
+                ),
 
 
                 // 왼쪽 아래 잔디와 꽃
